@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Overview of the Basic Custom Engine Agent template
 
 This app template is built on top of [Microsoft 365 Agents SDK](https://github.com/Microsoft/Agents).
@@ -59,3 +60,7 @@ The following are Microsoft 365 Agents Toolkit specific project files. You can [
 
 ## Known issue
 - The agent is currently not working in any Teams group chats or Teams channels when the stream response is enabled.
+=======
+# m365-copilot-aifoundry-saplogicapp
+M365 Copilot Agent Integration with Azure AI Foundry (Logic Apps + SAP) - Local 
+>>>>>>> 3aa0ed6bc19b67e69547c2da50fcc7dde6a019a8
