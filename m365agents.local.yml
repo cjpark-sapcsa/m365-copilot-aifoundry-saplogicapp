@@ -93,5 +93,5 @@ deploy:
         AZURE_OPENAI_API_KEY: ${{SECRET_AZURE_OPENAI_API_KEY}}
         AZURE_OPENAI_ENDPOINT: ${{AZURE_OPENAI_ENDPOINT}}
         AZURE_OPENAI_DEPLOYMENT_NAME: ${{AZURE_OPENAI_DEPLOYMENT_NAME}}
-        FOUNDRY_PROJECT_URL: https://foundy4o3i.services.ai.azure.com/api/projects/project
-        FOUNDRY_AGENT_ID: asst_0oz4iLviDs4tLkq4pUHlOacG
+        FOUNDRY_PROJECT_URL: <= add your FOUNDRY_PROJECT_URL
+        FOUNDRY_AGENT_ID: <= add agent ID
