@@ -1,0 +1,77 @@
+{
+  "$schema": "https://developer.microsoft.com/en-us/json-schemas/teams/v1.21/MicrosoftTeams.schema.json",
+  "manifestVersion": "1.21",
+  "version": "1.0.1",
+  "id": "${{TEAMS_APP_ID}}",
+  "developer": {
+    "name": "ChanJin Park@Microsoft ASEAN", 
+    "websiteUrl": "https://www.microsoft.com",
+    "privacyUrl": "https://www.microsoft.com/privacy",
+    "termsOfUseUrl": "https://www.microsoft.com/terms"
+  },
+  "icons": {
+    "color": "color.png",
+    "outline": "outline.png"
+  },
+  "name": {
+    "short": "SAP CPO Agent${{APP_NAME_SUFFIX}}",
+    "full": "SAP Procurement Assistant for CPO Office"
+  },
+  "description": {
+    "short": "Ask procurement questions. Get real-time SAP insights.",
+    "full": "An AI-powered procurement assistant for the CPO office. Connects to SAP via Logic Apps and Azure AI Agents to answer queries such as open purchase orders, product availability, pricing analysis, and stock levels."
+  },
+  "accentColor": "#004578",
+  "copilotAgents": {
+    "customEngineAgents": [
+      {
+        "type": "bot",
+        "id": "${{BOT_ID}}"
+      }
+    ]
+  },
+  "bots": [
+    {
+      "botId": "${{BOT_ID}}",
+      "scopes": ["copilot", "personal", "team"],
+      "supportsFiles": false,
+      "isNotificationOnly": false,
+      "commandLists": [
+        {
+          "scopes": ["copilot", "personal"],
+          "commands": [
+            {
+              "title": "List notebook products in stock",
+              "description": "Show all notebooks currently available in stock"
+            },
+            {
+              "title": "Compare supplier pricing",
+              "description": "Compare prices for laptops from all suppliers"
+            },
+            {
+              "title": "Find low stock items",
+              "description": "Which products have stock quantity below 10?"
+            },
+            {
+              "title": "Show high-value products",
+              "description": "List all products priced above $1000"
+            },
+            {
+              "title": "Get product details",
+              "description": "Show details for product HT-1001"
+            },
+            {
+              "title": "Analyze product trends",
+              "description": "What are the top 5 selling products this month?"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "composeExtensions": [],
+  "configurableTabs": [],
+  "staticTabs": [],
+  "permissions": ["identity", "messageTeamMembers"],
+  "validDomains": []
+}

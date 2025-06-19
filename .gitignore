@@ -1,0 +1,29 @@
+# Environment files
+.env
+.env.*
+env/.env*
+*.env
+.env.local*
+.env.dev*
+.env.playground*
+*.user
+
+# TeamsFx and local configs
+env/.env.*.user
+.localConfigs
+.localConfigs.playground
+.notification.localstore.json
+.notification.playgroundstore.json
+
+# Node and build
+node_modules/
+lib/
+appPackage/build
+
+# Dev tool directories
+/devTools/
+.vscode/
+
+# OS noise
+.DS_Store
+Thumbs.db
