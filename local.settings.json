@@ -3,8 +3,8 @@
   "Values": {
     "AzureWebJobsStorage": "UseDevelopmentStorage=true",
     "FUNCTIONS_WORKER_RUNTIME": "node",
-    "FOUNDRY_PROJECT_URL": "https://foundy4o3i.services.ai.azure.com/api/projects/project",
-    "FOUNDRY_AGENT_ID": "asst_0oz4iLviDs4tLkq4pUHlOacG",
+    "FOUNDRY_PROJECT_URL": "" <== add your own URL
+    "FOUNDRY_AGENT_ID": "" <= add your created agent ID from Azure AI Foundry service Aget
     "FUNCTION_PROXY_URL": "http://localhost:7071/api/ask"
 
   }
