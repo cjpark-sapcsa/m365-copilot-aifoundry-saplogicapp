@@ -69,7 +69,7 @@ Copy the following folders into your **M365 Agents Toolkit** project directory:
 Create a `.env` file in the project root (or under `/env/.env.local`) and add the following variables:
 
 ```env
-# Azure OpenAI (optional)
+# Azure OpenAI from Azure AI Froundry project
 AZURE_OPENAI_API_KEY=your-key
 AZURE_OPENAI_ENDPOINT=https://your-openai-endpoint
 AZURE_OPENAI_DEPLOYMENT_NAME=deployment-name
