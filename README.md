@@ -1,4 +1,4 @@
-# M365 Copilot Agent Integration with Azure AI Foundry (Logic Apps + SAP)
+# M365 Copilot Agent Integration with Azure AI Foundry (Logic App + SAP)
 
 A ready-to-use solution and SDK patterns to connect **Microsoft 365 Copilot** (or Teams Apps) to **Azure AI Foundry-hosted agents**, leveraging Logic Apps for SAP OData workflows. Includes secure local proxy for dev/test, production best practices, and patterns for multi-agent extension.
 
@@ -20,14 +20,15 @@ A ready-to-use solution and SDK patterns to connect **Microsoft 365 Copilot** (o
 
 ---
 
-## 🚦 Prerequisites
+## Prerequisites
 
 - Azure subscription with **Azure AI Foundry** and **Logic Apps** enabled.
-- Azure AI Foundry agent **already created**, with tools/actions configured to call SAP OData  
+- Create an account on the SAP Gateway Demo system https://developers.sap.com/tutorials/gateway-demo-signup..html
+- Azure AI Foundry agent **already created**, with tools/actions configured to call SAP OData, Follow the steps   
   [Integration architecture overview (LinkedIn)](https://www.linkedin.com/pulse/azure-ai-foundry-agent-service-logic-apps-sap-odata-integration-park-lxxwc/?trackingId=n1zaqnFhRg6PH6nPou%2Fe4Q%3D%3D)
-- SAP OData endpoint reachable from Logic Apps:  
+- SAP OData endpoint reachable from Logic Apps as part of LogicApp Workflow:  
   - Local test uses SAP ES5 Gateway Demo  
-  - Production should use VNet peering
+  -  A dedicated Odata URL will be exposed as part of LogicApp flow for this demo, e.g https://sapes5.sapdevcenter.com/sap/opu/odata/sap/epm_ref_apps_shop_srv/Products 
 - Logic Apps workflow already deployed and accessible
 - All services (Foundry, Logic App, SAP) ideally in the **same tenant**
 - Node.js (v18+) and NPM installed
@@ -108,6 +109,14 @@ To run your agent locally in **Teams** or **Copilot Studio**:
 
 - Open the project in **Visual Studio Code**
 - Ensure the **Microsoft 365 Agents Toolkit** extension is installed
+- In a separate terminal, navigate to the `/src` folder and run:
+
+   ```bash
+   func start --verbose
+    ```
+   ![image-1 proxy-function](https://github.com/user-attachments/assets/98a41d40-ad77-460e-8d1b-4fa24c3df5c3)
+  This command starts the Azure Function locally, which acts as a secure proxy to your Azure AI Foundry Agent endpoint
+
 - Press `F5` to launch the app, or use the **"Run: Debug in Teams (Edge)"** launch configuration
 
 Your **M365 Copilot Chat** will start and interact using the logic you've implemented.
@@ -130,7 +139,7 @@ Your **M365 Copilot Chat** will start and interact using the logic you've implem
 
 ---
 
-### ⚠️ Known Limitation: Timeout Handling
+### Known Limitation: Timeout Handling
 
 **Note:**  
 In the local development environment, end-to-end agent runs may exceed the Teams/Copilot UI timeout limit (typically **25–30 seconds**), especially for complex queries or large OData responses.
@@ -143,7 +152,7 @@ even if the backend workflow completes successfully.
 
 ---
 
-### 🔐 Production Guidance: Use API Management + Private Endpoint
+### Production Guidance: Use API Management + Private Endpoint
 
 - In local dev, a **Function proxy** is used to relay Copilot messages to Azure AI Foundry agents securely.
 - For **production deployment**, using **Azure API Management (APIM)** is strongly recommended to:
@@ -154,9 +163,9 @@ even if the backend workflow completes successfully.
 Additionally:
 
 - Use **Azure Private Endpoint** for Foundry and Logic App resources to ensure network isolation.
-- Combine with **VNet-integrated** SAP OData access where applicable.
+- Combine with **Vnet-integrated** SAP OData access where applicable or S/4HANA, SAP ECC application as On-Prem .
 
 ---
 
-> ✅ Always test under real latency and load conditions to ensure your agent completes within UI interaction limits for a smoother Copilot user experience.
+> Always test under real latency and load conditions to ensure your agent completes within UI interaction limits for a smoother Copilot user experience.
 
