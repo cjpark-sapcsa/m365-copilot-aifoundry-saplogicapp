@@ -22,20 +22,43 @@ A ready-to-use solution and SDK patterns to connect **Microsoft 365 Copilot** (o
 
 ## Prerequisites
 
-- Azure subscription with **Azure AI Foundry** and **Logic Apps** enabled.
-- Create an account on the SAP Gateway Demo system https://developers.sap.com/tutorials/gateway-demo-signup..html
-- Azure AI Foundry agent **already created**, with tools/actions configured to call SAP OData, Follow the steps   
-  [Integration architecture overview (LinkedIn)](https://www.linkedin.com/pulse/azure-ai-foundry-agent-service-logic-apps-sap-odata-integration-park-lxxwc/?trackingId=n1zaqnFhRg6PH6nPou%2Fe4Q%3D%3D)
-- SAP OData endpoint reachable from Logic Apps as part of LogicApp Workflow:  
-  - Local test uses SAP ES5 Gateway Demo  
-  -  A dedicated Odata URL will be exposed as part of LogicApp flow for this demo, e.g https://sapes5.sapdevcenter.com/sap/opu/odata/sap/epm_ref_apps_shop_srv/Products 
-- Logic Apps workflow already deployed and accessible
-- All services (Foundry, Logic App, SAP) ideally in the **same tenant**
-- Node.js (v18+) and NPM installed
-- Azure Functions Core Tools installed
-- [Microsoft 365 Agents Toolkit](https://learn.microsoft.com/en-us/microsoftteams/platform/toolkit/install-agents-toolkit?tabs=vscode) installed in VS Code
+To run this solution successfully in a local development environment, ensure the following setup is complete:
 
----
+### 1. Azure Services
+- An active **Azure Subscription**  
+- **Azure AI Foundry** enabled  
+- **Azure Logic Apps** enabled (Consumption or Standard tier) but Azure AI Foundry service currently only support Consumption mode now
+
+### 2. Foundry Agent Setup
+- **Azure AI Foundry Agent** already created  
+  - The agent must have tools/actions configured to call Logic Apps (e.g., HTTP tool or Function tool).
+  - You can reuse an existing agent (e.g., **CPO Procurement Agent**) by supplying its `FOUNDRY_AGENT_ID`.
+  - Refer to the architecture setup in the [integration article](https://www.linkedin.com/pulse/azure-ai-foundry-agent-service-logic-apps-sap-odata-integration-park-lxxwc/?trackingId=%2BV%2B9N4YhQpW0kV1O3rlBMg%3D%3D)
+
+### 3. Logic App Setup
+- Create a **Logic App workflow** that connects to an SAP OData API  
+  - For demo/testing purposes, use the **SAP ES5 Gateway demo system**.
+  - Example API URL used:
+  
+    ```
+    https://sapes5.sapdevcenter.com/sap/opu/odata/sap/epm_ref_apps_shop_srv/Products
+    ```
+
+- The Logic App should expose a public **HTTP trigger endpoint** to act as the “tool action” your Foundry Agent can invoke.
+
+### 4. SAP OData Access
+- Create a **free account** on the [SAP Gateway Demo System (ES5)](https://developers.sap.com/tutorials/gateway-demo-signup.html)
+- Use the ES5 credentials to access the OData service from the Logic App
+
+### 5. Environment Alignment
+- Ideally, host **AI Foundry**, **Logic App**, and **OData connection** within the same Azure tenant for smooth authentication and testing  
+- For production SAP endpoints, consider **VNet integration** or **IP whitelisting** as needed
+
+### 6. Local Development Tools
+- **Node.js v18+** and `npm` installed  
+- **Azure Functions Core Tools v4** installed  
+- **Microsoft 365 Agents Toolkit** extension for **Visual Studio Code**
+
 
 ## Local Development Setup
 
@@ -105,7 +128,7 @@ npm install \
 ---
 ### 6. Debug in Teams or Copilot (Local)
 
-To run your agent locally in **Teams** or **Copilot Studio**:
+To run your agent locally in **Teams App** or **M365 Copilot chat**:
 
 - Open the project in **Visual Studio Code**
 - Ensure the **Microsoft 365 Agents Toolkit** extension is installed
@@ -146,7 +169,7 @@ In the local development environment, end-to-end agent runs may exceed the Teams
 
 This may result in a generic error such as:
 
-> “Sorry, something went wrong...”
+> “Sorry, something went wrong I am unable to give you this response at the moment. I will keep working on your query and respond later....”
 
 even if the backend workflow completes successfully.
 
